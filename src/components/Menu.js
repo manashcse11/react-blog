@@ -17,7 +17,7 @@ class Menu extends Component {
                         <Link to="/about">About</Link>
                     </li>
                     <li>
-                        <Link to="/users">Users</Link>
+                        <Link to="/users/78">Users</Link>
                     </li>
                 </ul>
                 <Switch>
