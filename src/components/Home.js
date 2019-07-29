@@ -22,7 +22,6 @@ class Home extends Component {
             page: pageNumber
         });
         let url = "http://lc.laravelrestpassport.com/api/posts?page="+pageNumber;
-        // let url = "http://localhost/cors_test.php";
 
         fetch(url)
         .then(
@@ -41,6 +40,17 @@ class Home extends Component {
             });
         }
         );
+    }
+
+    truncateMeaningful = (str, maxLength) => {
+        if(str.length <= maxLength){
+            return str;
+        }
+        //trim the string to the maximum length
+        var trimmedString = str.substr(0, maxLength);
+
+        //re-trim if we are in the middle of a word
+        return trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
     }
 
     render() {
@@ -63,7 +73,7 @@ class Home extends Component {
                                         <div className="card-body">
                                             <h5 className="card-title">{post.title}</h5>
                                             <h6 className="card-subtitle mb-2 text-muted">{post.created_at}</h6>
-                                            <p className="card-text">{post.body}</p>
+                                            <p className="card-text">{this.truncateMeaningful(post.body, 110)}...</p>
                                             <a href="#" className="card-link">Card link</a>
                                         </div>
                                     </div>
