@@ -80,13 +80,10 @@ class Home extends Component {
                             )
                         }             
                     </div>
-                    <Pagination page={page} total_pages={total_pages} paginationHandler={this.makeHttpRequest} />                
+                    <Pagination page={page} total_pages={total_pages} paginationHandler={this.makeHttpRequest} />
                 </div>
             );
         }
-        return(
-            <h1>Home Page</h1>
-        ); 
     }
 }
 

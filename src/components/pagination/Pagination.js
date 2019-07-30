@@ -27,13 +27,11 @@ const Pagination = (props) => {
         </li>) : "";
 
     return (
-        <nav aria-label="Page navigation example">
             <ul className="pagination">
                 {firstArrow}
                 {pagination_li}
                 {lastArrow}                
             </ul>
-        </nav>
     );
 }
 
