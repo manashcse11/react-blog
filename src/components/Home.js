@@ -73,8 +73,7 @@ class Home extends Component {
                                         <div className="card-body">
                                             <h5 className="card-title">{post.title}</h5>
                                             <h6 className="card-subtitle mb-2 text-muted">{post.created_at}</h6>
-                                            <p className="card-text">{this.truncateMeaningful(post.body, 110)}...</p>
-                                            <a href="#" className="card-link">Card link</a>
+                                            <p className="card-text">{this.truncateMeaningful(post.body, 110)}... <a href={"/posts/" + post.id} className="card-link">Read more</a></p>
                                         </div>
                                     </div>
                                 </div>
