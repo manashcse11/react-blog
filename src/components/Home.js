@@ -14,10 +14,13 @@ class Home extends Component {
     }
 
     componentDidMount(){
-        this.makeHttpRequest(1);
+        this.makeHttpRequest();
     }
     
-    makeHttpRequest = (pageNumber) => {
+    makeHttpRequest = () => {
+        const {params} = this.props.match;
+        
+        var pageNumber = params.page ? params.page : 1;
         this.setState({
             page: pageNumber
         });
@@ -80,7 +83,7 @@ class Home extends Component {
                             )
                         }             
                     </div>
-                    <Pagination page={page} total_pages={total_pages} paginationHandler={this.makeHttpRequest} />
+                    <Pagination page={page} total_pages={total_pages} routeString="/home-posts/page/" />
                 </div>
             );
         }

@@ -22,10 +22,11 @@ class Menu extends Component {
                     </li>
                 </ul>
                 <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/about" component={About} />
-                    <Route path="/users/:id" component={Users} />
-                    <Route path="/posts/:id" component={Post} />
+                    <Route exact path="/" component={Home} key="1"/>
+                    <Route path="/about" component={About} key="2" />
+                    <Route path="/users/:id" component={Users} key="3" />
+                    <Route path="/posts/:id" component={Post} key="4" />
+                    <Route path="/home-posts/page/:page" component={Home} key="5" />
                     <Route component={Notfound} />
                 </Switch>
             </BrowserRouter>
