@@ -21,7 +21,7 @@ class Home extends Component {
         this.setState({
             page: pageNumber
         });
-        let url = "http://lc.laravelrestpassport.com/api/posts?page="+pageNumber;
+        let url = "http://lc.laravelrestpassport.com/api/posts?per_page=12&page="+pageNumber;
 
         fetch(url)
         .then(
@@ -68,7 +68,7 @@ class Home extends Component {
                     <div className="row">                        
                         {
                             posts.map(post => 
-                                <div className="col-sm-3" key={post.id}>
+                                <div className="col-sm-3 mb-4" key={post.id}>
                                     <div className="card">
                                         <div className="card-body">
                                             <h5 className="card-title">{post.title}</h5>
