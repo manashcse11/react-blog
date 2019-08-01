@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Configuration from '../Configuration';
 import Pagination from './pagination/Pagination';
 
 class UserPost extends Component {
@@ -13,6 +14,7 @@ class UserPost extends Component {
             , page: 1
             , total_pages: 0
         }
+        this.config = new Configuration();
     }
 
     componentDidMount(){
@@ -28,7 +30,7 @@ class UserPost extends Component {
             page: pageNumber
             , user_id: user_id
         });
-        let url = "http://lc.laravelrestpassport.com/api/users/" + user_id + "/posts?per_page=12&page=" + pageNumber;
+        let url = this.config.API_BASE_URL + "users/" + user_id + "/posts?per_page=12&page=" + pageNumber;
 
         fetch(url)
         .then(

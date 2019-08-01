@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Configuration from '../Configuration';
 import Pagination from './pagination/Pagination';
 
 class Home extends Component {
@@ -11,6 +12,7 @@ class Home extends Component {
             , page: 1
             , total_pages: 0
         }
+        this.config = new Configuration();
     }
 
     componentDidMount(){
@@ -24,7 +26,7 @@ class Home extends Component {
         this.setState({
             page: pageNumber
         });
-        let url = "http://lc.laravelrestpassport.com/api/posts?per_page=12&page="+pageNumber;
+        let url = this.config.API_BASE_URL + "posts?per_page=12&page="+pageNumber;
 
         fetch(url)
         .then(
