@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import Pagination from './pagination/Pagination';
 
-class Home extends Component {
+class UserPost extends Component {
     constructor(props){
         super(props);
         this.state = {
             error: null
             , isLoaded: false
+            , user_id: 0
+            , user: {}
             , posts: []
             , page: 1
             , total_pages: 0
@@ -20,11 +22,13 @@ class Home extends Component {
     makeHttpRequest = () => {
         const {params} = this.props.match;
         
+        var user_id = params.user ? params.user : 1;
         var pageNumber = params.page ? params.page : 1;
         this.setState({
             page: pageNumber
+            , user_id: user_id
         });
-        let url = "http://lc.laravelrestpassport.com/api/posts?per_page=12&page="+pageNumber;
+        let url = "http://lc.laravelrestpassport.com/api/users/" + user_id + "/posts?per_page=12&page=" + pageNumber;
 
         fetch(url)
         .then(
@@ -33,6 +37,7 @@ class Home extends Component {
             this.setState({
                 isLoaded: true
                 , posts: result.posts.data
+                , user: result.user
                 , total_pages: result.posts.last_page
             });
         },
@@ -57,8 +62,7 @@ class Home extends Component {
     }
 
     render() {
-        const {error, isLoaded, posts, page, total_pages} = this.state;
-
+        const {error, isLoaded, posts, user, page, total_pages} = this.state;
         if(error){
             return (<div>Error in loading</div>);
         }
@@ -68,6 +72,7 @@ class Home extends Component {
         else{
             return (
                 <div>
+                    <h3>{user.name}</h3>
                     <div className="row">                        
                         {
                             posts.map(post => 
@@ -75,7 +80,6 @@ class Home extends Component {
                                     <div className="card">
                                         <div className="card-body">
                                             <h5 className="card-title">{post.title}</h5>
-                                            <p className="font-italic"><a href={"/user-posts/" + post.users.id + "/page/1"} className="card-link">{post.users.name}</a></p>
                                             <h6 className="card-subtitle mb-2 text-muted">{post.created_at}</h6>
                                             <p className="card-text">{this.truncateMeaningful(post.body, 110)}... <a href={"/posts/" + post.id} className="card-link">Read more</a></p>
                                         </div>
@@ -84,11 +88,11 @@ class Home extends Component {
                             )
                         }             
                     </div>
-                    <Pagination page={page} total_pages={total_pages} routeString="/home-posts/page/" />
+                    <Pagination page={page} total_pages={total_pages} routeString={"/user-posts/" + this.state.user_id + "/page/"} />
                 </div>
             );
         }
     }
 }
 
-export default Home;
+export default UserPost;

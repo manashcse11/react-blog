@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import Home from './Home';
+import UserPost from './UserPost';
 import About from './About';
 import Users from './Users';
 import Post from './Post';
@@ -27,6 +28,7 @@ class Menu extends Component {
                     <Route path="/users/:id" component={Users} key="3" />
                     <Route path="/posts/:id" component={Post} key="4" />
                     <Route path="/home-posts/page/:page" component={Home} key="5" />
+                    <Route path="/user-posts/:user/page/:page" component={UserPost} key="6" />
                     <Route component={Notfound} />
                 </Switch>
             </BrowserRouter>
