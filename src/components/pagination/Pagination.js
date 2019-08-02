@@ -9,7 +9,7 @@ const Pagination = (props) => {
     const pagination_range = 5;
     const limit = page + pagination_range < total_pages ? page + pagination_range : total_pages;
     for (let start = page - pagination_range > 0 ? page - pagination_range : 1; start <= limit; start++){
-        let li_class = start === page ? "page-item active" : "page-item";
+        let li_class = start == page ? "page-item active" : "page-item";
         pagination_li.push(
             <li key={start} className={li_class}><a className="page-link" href={routeString + start}>{start}</a></li>
             );
