@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Link, NavLink, Switch} from 'react-router-dom';
 import Home from './Home';
 import UserPost from './UserPost';
 import About from './About';
@@ -11,7 +11,23 @@ class Menu extends Component {
     render(){
         return(
             <BrowserRouter>
-                <ul>
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <NavLink className="navbar-brand" to="/">React Blog</NavLink>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav">
+                            <li className="nav-item" activeClassName="active">
+                                <NavLink className="nav-link" to="/">Home</NavLink>
+                            </li>
+                            <li className="nav-item" activeClassName="active">
+                                <NavLink className="nav-link" to="/users/78">Users</NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                {/* <ul>
                     <li>
                         <Link to="/">Home</Link>
                     </li>
@@ -21,7 +37,7 @@ class Menu extends Component {
                     <li>
                         <Link to="/users/78">Users</Link>
                     </li>
-                </ul>
+                </ul> */}
                 <Switch>
                     <Route exact path="/" component={Home} key="1"/>
                     <Route path="/about" component={About} key="2" />

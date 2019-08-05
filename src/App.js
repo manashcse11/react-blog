@@ -5,7 +5,7 @@ class App extends Component {
     render () {
         return (
             <div className="container">
-                <h1>React Blog!</h1>
+                {/* <h1>React Blog!</h1> */}
                 <Menu />
             </div>
         );
