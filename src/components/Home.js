@@ -69,24 +69,26 @@ class Home extends Component {
         }
         else{
             return (
-                <div>
-                    <div className="row">                        
-                        {
-                            posts.map(post => 
-                                <div className="col-sm-3 mb-4" key={post.id}>
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <h5 className="card-title">{post.title}</h5>
-                                            <p className="font-italic"><a href={"/user-posts/" + post.users.id + "/page/1"} className="card-link">{post.users.name}</a></p>
-                                            <h6 className="card-subtitle mb-2 text-muted">{post.created_at}</h6>
-                                            <p className="card-text">{this.truncateMeaningful(post.body, 110)}... <a href={"/posts/" + post.id} className="card-link">Read more</a></p>
+                <div className="album py-5 bg-light">
+                    <div className="container">
+                        <div className="row">                        
+                            {
+                                posts.map(post => 
+                                    <div className="col-sm-3 mb-4" key={post.id}>
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <h5 className="card-title">{post.title}</h5>
+                                                <p className="font-italic"><a href={"/user-posts/" + post.users.id + "/page/1"} className="card-link">{post.users.name}</a></p>
+                                                <h6 className="card-subtitle mb-2 text-muted">{post.created_at}</h6>
+                                                <p className="card-text">{this.truncateMeaningful(post.body, 110)}... <a href={"/posts/" + post.id} className="card-link">Read more</a></p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        }             
+                                )
+                            }             
+                        </div>
+                        <Pagination page={page} total_pages={total_pages} routeString="/home-posts/page/" />
                     </div>
-                    <Pagination page={page} total_pages={total_pages} routeString="/home-posts/page/" />
                 </div>
             );
         }

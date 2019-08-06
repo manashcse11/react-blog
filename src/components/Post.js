@@ -34,10 +34,12 @@ class Post extends Component {
     render() {
         const post = this.state.post;
         return (
-                <div>
-                    <h1>{post.title}</h1>
-                    <h6 className="card-subtitle mb-2 text-muted">{post.created_at}</h6>
-                    <p>{post.body}</p>
+                <div className="album py-5">
+                    <div className="container">
+                        <h1>{post.title}</h1>
+                        <h6 className="card-subtitle mb-2 text-muted">{post.created_at}</h6>
+                        <p>{post.body}</p>
+                    </div>
                 </div>
                 );
     }

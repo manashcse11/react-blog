@@ -73,24 +73,26 @@ class UserPost extends Component {
         }
         else{
             return (
-                <div>
-                    <h3>{user.name}</h3>
-                    <div className="row">                        
-                        {
-                            posts.map(post => 
-                                <div className="col-sm-3 mb-4" key={post.id}>
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <h5 className="card-title">{post.title}</h5>
-                                            <h6 className="card-subtitle mb-2 text-muted">{post.created_at}</h6>
-                                            <p className="card-text">{this.truncateMeaningful(post.body, 110)}... <a href={"/posts/" + post.id} className="card-link">Read more</a></p>
+                <div className="album py-5 bg-light">
+                    <div className="container">
+                        <h3>{user.name}</h3>
+                        <div className="row">                        
+                            {
+                                posts.map(post => 
+                                    <div className="col-sm-3 mb-4" key={post.id}>
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <h5 className="card-title">{post.title}</h5>
+                                                <h6 className="card-subtitle mb-2 text-muted">{post.created_at}</h6>
+                                                <p className="card-text">{this.truncateMeaningful(post.body, 110)}... <a href={"/posts/" + post.id} className="card-link">Read more</a></p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        }             
-                    </div>
-                    <Pagination page={page} total_pages={total_pages} routeString={"/user-posts/" + this.state.user_id + "/page/"} />
+                                )
+                            }             
+                        </div>
+                        <Pagination page={page} total_pages={total_pages} routeString={"/user-posts/" + this.state.user_id + "/page/"} />
+                    </div>  
                 </div>
             );
         }
