@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Configuration from '../Configuration';
 import Pagination from './pagination/Pagination';
 import Grid from './Grid';
+import Container from './Container';
+import StatiResponse from './StaticResponse';
 
 class Home extends Component {
     constructor(props){
@@ -62,21 +64,22 @@ class Home extends Component {
     render() {
         const {error, isLoaded, posts, page, total_pages} = this.state;
         
-
         if(error){
-            return (<div>Error in loading</div>);
+            return (
+                <StatiResponse text="Error in loading" />                                
+            );
         }
         else if(!isLoaded){
-            return (<div>Loading...</div>);
+            return (    
+                <StatiResponse text="Loading..." />          
+            );
         }
         else{
             return (
-                <div className="album py-5 bg-light">
-                    <div className="container">
-                        <Grid params={this.state} truncateMeaningful={this.truncateMeaningful}/>
-                        <Pagination page={page} total_pages={total_pages} routeString="/home-posts/page/" />
-                    </div>
-                </div>
+                <Container>
+                    <Grid params={this.state} truncateMeaningful={this.truncateMeaningful}/>
+                    <Pagination page={page} total_pages={total_pages} routeString="/home-posts/page/" />
+                </Container>
             );
         }
     }
