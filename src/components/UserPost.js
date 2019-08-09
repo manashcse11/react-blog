@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import Configuration from '../Configuration';
 import Pagination from './pagination/Pagination';
+import Grid from './Grid';
+import Container from './Container';
+import StatiResponse from './StaticResponse';
 
 class UserPost extends Component {
     constructor(props){
@@ -65,35 +68,23 @@ class UserPost extends Component {
 
     render() {
         const {error, isLoaded, posts, user, page, total_pages} = this.state;
+
         if(error){
-            return (<div>Error in loading</div>);
+            return (
+                <StatiResponse text="Error in loading" />                                
+            );
         }
         else if(!isLoaded){
-            return (<div>Loading...</div>);
+            return (    
+                <StatiResponse text="Loading..." />          
+            );
         }
         else{
             return (
-                <div className="album py-5 bg-light">
-                    <div className="container">
-                        <h3>{user.name}</h3>
-                        <div className="row">                        
-                            {
-                                posts.map(post => 
-                                    <div className="col-sm-3 mb-4" key={post.id}>
-                                        <div className="card">
-                                            <div className="card-body">
-                                                <h5 className="card-title">{post.title}</h5>
-                                                <h6 className="card-subtitle mb-2 text-muted">{post.created_at}</h6>
-                                                <p className="card-text">{this.truncateMeaningful(post.body, 110)}... <a href={"/posts/" + post.id} className="card-link">Read more</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )
-                            }             
-                        </div>
-                        <Pagination page={page} total_pages={total_pages} routeString={"/user-posts/" + this.state.user_id + "/page/"} />
-                    </div>  
-                </div>
+                <Container>
+                    <Grid params={this.state} truncateMeaningful={this.truncateMeaningful}/>
+                    <Pagination page={page} total_pages={total_pages} routeString={"/user-posts/" + this.state.user_id + "/page/"} />
+                </Container>
             );
         }
     }
